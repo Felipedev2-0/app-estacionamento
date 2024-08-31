@@ -1,15 +1,41 @@
 {
-    "status" : [
-        {
-            "id": 1,
-            "tipo": "Solicitado"
-        },
-
-        {
-            "id": 2,
-            "tipo": "Finalizado"
-        }
-    ],
-
-    "carros": []
+  "status": [
+    {
+      "id": "1",
+      "tipo": "Solicitado"
+    },
+    {
+      "id": "2",
+      "tipo": "Finalizado"
+    }
+  ],
+  "carros": [
+    {
+      "id": "b67e",
+      "nome": "AYANA",
+      "nomeCarro": "FUSCA",
+      "placaCarro": "KFU123",
+      "hora": "10h",
+      "msg": null,
+      "status": "Solicitado"
+    },
+    {
+      "id": "4fb2",
+      "nome": "LEO",
+      "nomeCarro": "VECTRA",
+      "placaCarro": "PDD1234",
+      "hora": "8:00h",
+      "msg": null,
+      "status": "Solicitado"
+    },
+    {
+      "id": "7f46",
+      "nome": "Breno",
+      "nomeCarro": "Jetta",
+      "placaCarro": "KKK8R23",
+      "hora": "6:00h",
+      "msg": null,
+      "status": "Solicitado"
+    }
+  ]
 }

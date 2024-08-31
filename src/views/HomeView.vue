@@ -1,11 +1,21 @@
 <template>
-  <div class="home">
+  <div class="main-container">
 
-    <h1>HOME</h1>
-    
+    <h1>Cadastrar Veículos</h1>
+
+    <CarroForm />
+
   </div>
 </template>
 
 <script>
+
+import CarroForm from '@/components/CarroForm.vue';
+
+export default {
+  components: {
+    CarroForm
+  }
+}
 
 </script>
