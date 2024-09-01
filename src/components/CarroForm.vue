@@ -2,6 +2,9 @@
 
     <div>
 
+        <!--chamando component mensagem-->
+        <Mensagem :msg="msg" v-show="msg" />
+
         <!--criando @submit e metodo createCarro para envio de dados-->
         <form id="carro-form" @submit="createCarro">
 
@@ -56,6 +59,9 @@
 </template>
 
 <script>
+
+import Mensagem from './Mensagem.vue';
+
 export default {
     name: "CarroForm",
 
@@ -95,22 +101,32 @@ export default {
             //enviar os dados do form para o arquivo db.json com o POST
             const req = await fetch("http://localhost:3000/carros", {
                 method: "POST",
-                headers:{"Content-Type" : "application/json"},
+                headers: { "Content-Type": "application/json" },
                 body: dataJson
             });
 
             //OBTENDO A RESPOSTA DO POST
             const res = await req.json()
 
-            //console.log(res);
+            
+            //METODO PARA CHAMAR A MENSAGEM DE SUCESSO NO CADASTRO
+            this.msg=`Carro Cadastrado com Sucesso.`
+
+            //LIMPAR A MENSAGEM APÓS O TEMPO
+            setTimeout(() => this.msg="", 3000)
+
 
             //LIMPANDO OS CAMPOS APÓS CADASTRAR CARRO
             this.nome = "",
-            this.nomeCarro = "",
-            this.placaCarro = "",
-            this.hora = ""
-            
+                this.nomeCarro = "",
+                this.placaCarro = "",
+                this.hora = ""
+
         }
+    },
+
+    components: {
+        Mensagem
     }
 
 }
