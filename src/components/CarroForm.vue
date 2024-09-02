@@ -93,8 +93,6 @@ export default {
                 status: "Solicitado",
             }
 
-            //console.log(data)
-
             //transformar os dados json em string para o backend
             const dataJson = JSON.stringify(data)
 
