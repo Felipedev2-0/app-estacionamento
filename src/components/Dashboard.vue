@@ -27,7 +27,7 @@
             <option value="" v-for="statu in status" :key="statu.tipo">{{ statu.tipo }}</option>
           </select>
 
-          <button class="delete-btn">Deletar</button>
+          <button class="delete-btn" @click="deletarCarro(carro.id)">Deletar</button>
         </div>
       </div>
     </div>
@@ -72,6 +72,18 @@ export default {
 
       this.status = data
 
+
+
+    },
+
+    async deletarCarro(id){
+        const req = await fetch(`http://localhost:3000/carros/${id}`, {
+          method: "DELETE"
+        })
+
+        const data = await req.json()
+
+        this.getCadastros()
 
 
     }
