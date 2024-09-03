@@ -1,6 +1,11 @@
 <template>
+
   <div id="carro-table">
+
+    <Mensagem :msg="msg" :type="msgType" v-show="msg" />
+
     <div>
+
       <div class="carro-table-heading">
         <div class="order-id">#:</div>
         <div>Nome da Pessoa:</div>
@@ -9,7 +14,9 @@
         <div>Horário de Entrada:</div>
         <div>Ações:</div>
       </div>
+
     </div>
+
 
     <div id="carro-table-rows">
 
@@ -22,9 +29,11 @@
         <div>{{ carro.hora }}</div>
 
         <div class="actions">
-          <select name="status" class="status">
+
+          <select name="status" class="status" @change="updateCarro($event, carro.id)">
             <option value="">Status Carro</option>
-            <option value="" v-for="statu in status" :key="statu.tipo">{{ statu.tipo }}</option>
+            <option :value="statu.tipo" v-for="statu in status" :key="statu.id" :selected="carro.status == statu.tipo">
+              {{ statu.tipo }} </option>
           </select>
 
           <button class="delete-btn" @click="deletarCarro(carro.id)">Deletar</button>
@@ -35,6 +44,10 @@
 </template>
 
 <script>
+
+import Mensagem from './Mensagem.vue';
+
+
 export default {
   name: "Dashboard",
 
@@ -43,10 +56,22 @@ export default {
     return {
       carros: null,
       carros_id: null,
-      status: []
+      status: [],
+      msg: null,
+      msgType: 'success' // define o tipo da mensagem
     }
 
   },
+
+  //component mensagem
+
+  components: {
+    Mensagem
+
+  },
+
+
+
 
   //carregar os carros do db.json
   methods: {
@@ -64,7 +89,7 @@ export default {
 
     },
 
-    async getStatus(){
+    async getStatus() {
 
       const req = await fetch("http://localhost:3000/status")
 
@@ -76,14 +101,56 @@ export default {
 
     },
 
-    async deletarCarro(id){
-        const req = await fetch(`http://localhost:3000/carros/${id}`, {
-          method: "DELETE"
-        })
+    async deletarCarro(id) {
 
-        const data = await req.json()
+      const req = await fetch(`http://localhost:3000/carros/${id}`, {
+        method: "DELETE"
+      })
 
-        this.getCadastros()
+      const data = await req.json()
+
+      //mensagem de delete de carro
+      this.msg = `Cadastro deletado com sucesso`
+      this.msgType = 'error' // define como erro para mostrar em vermelho
+
+      //limpar mensagem
+      setTimeout(() => this.msg = "", 3000)
+
+
+      this.getCadastros()
+
+
+    },
+
+    //atualização do status do carro
+
+    async updateCarro(event, id) {
+
+      const opcoes = event.target.value
+
+      const dataJson = JSON.stringify({ status: opcoes })
+
+      const req = await fetch(`http://localhost:3000/carros/${id}`, {
+        method: "PATCH",//atualiza apenas o id do status
+        headers: { "Content-Type" : "application/json" },
+        body: dataJson
+
+
+      })
+
+      const res = await req.json()
+
+
+
+      //METODO PARA CHAMAR A MENSAGEM DE SUCESSO NO CADASTRO
+      this.msg = `Cadastro foi atualizado para ${res.status}`
+      this.msgType = 'success' // defnie como sucesso para mostrar o roxo
+
+      //LIMPAR A MENSAGEM APÓS O TEMPO
+      setTimeout(() => this.msg = "", 3000)
+
+      console.log(res);
+
 
 
     }
@@ -92,7 +159,7 @@ export default {
   },
 
   //chamando a aplicação 
-  mounted(){
+  mounted() {
     this.getCadastros()
   }
 

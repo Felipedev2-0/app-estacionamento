@@ -11,7 +11,7 @@
             <div class="input-container">
 
                 <label for="nome">Nome da Pessoa: </label>
-                <input type="text" id="nome" v-model="nome" placeholder="Informe o seu nome">
+                <input type="text" id="nome" v-model="nome" placeholder="Informe o seu nome" required="true">
 
 
             </div>
@@ -19,7 +19,7 @@
             <div class="input-container">
 
                 <label for="nome">Nome do Carro: </label>
-                <input type="text" id="nomeCarro" v-model="nomeCarro" placeholder="Informe o nome do carro">
+                <input type="text" id="nomeCarro" v-model="nomeCarro" placeholder="Informe o nome do carro" required="true">
 
 
             </div>
@@ -27,7 +27,7 @@
             <div class="input-container">
 
                 <label for="nome">Placa do Carro: </label>
-                <input type="text" id="placaCarro" v-model="placaCarro" placeholder="Informe a placa do carro">
+                <input type="text" id="placaCarro" v-model="placaCarro" placeholder="Informe a placa do carro" required="true">
 
 
             </div>
@@ -35,7 +35,7 @@
             <div class="input-container">
 
                 <label for="hora">Horário de Entrada: </label>
-                <input type="text" id="hora" v-model="hora" placeholder="Informe o horário de entrada">
+                <input type="text" id="hora" v-model="hora" placeholder="Informe o horário de entrada" required="true">
 
 
             </div>
