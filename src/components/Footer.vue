@@ -1,7 +1,7 @@
 <template>
 
     <footer id="footer">
-        <p>Sistema de Estacionamento - 2024 &copy; - Coffe Tag</p>
+        <p>Sistema de Estacionamento - 2024 &copy; - FCB Soluções</p>
     </footer>
 
 </template>
